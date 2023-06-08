@@ -1,0 +1,108 @@
+HRMS - Team : 7
+
+LOGIN 
+	screen-1 : to login for employee & admin ---->employee table
+	checks office mails   --filter--> controller1 - to validate logins
+	
+	screen-2 : forgrot/change password
+	controller-2 --- otp validation, mail share, pwd update in table
+
+if screen-1 employeelogin success controller-3 method : /employecontrol
+
+	Dashboard -- screen-3, 4 ---- contains subscreens
+			graphs-- attendance(showing punchin punchout), leaves(per month), permissions(per month),/// earned leaves, payslips
+
+Employee Dashboard -screen3 
+	profile
+		subscreen -3.1-- employee details---> from employee table
+		controller-4	view details, --change address
+
+	Master Data
+		option1 Holidays
+			subscreen-3.2--having used (employeopted:count(opt)), remaining(jbgrwiseholiday:total - used), total,  based on job grades  all holidays (holidays table)
+			controller-5, --- jobgradeholidayswise , employeeoptedleaves(optional), employeetablwe
+		option2 Leaves
+			subscreen -3.3-- having (sick, casual, other) used, remaining, permitted[total from jobgradewiseleaves] 
+			controller-6 -- employee table, jobgradewiseleaves, employeeoptedleaves(sick, casual, others)
+
+	ALMS
+		controller-7 -- to know the no. of presenties, to feed, to view , to update in employeeleavereqtable, to view employeeoptedtable
+		option1 Attendance
+			subscreen- 3.4 -- no of days present in a month	
+		option2 Leaves
+				Apply - subscreen- 3.5  
+				Update/change  - screen - 3.6
+				delete - subscreen - 3.7
+		option3 Permissions -- to Apply screen - 3.8 
+		option4 Approvals -- subscreen 3.9- to view approved leaves 
+
+	Ref Documents
+		offer letter
+		resume
+		study certificates
+		hike letter
+		medical reports
+		controller - 8 from induction documentation table  and refernece document table
+
+	Pay Roles
+		subscreen -3.9 --- to view based on earned leaves( optional holidays), attendance,  leaves, pemissions
+
+
+if screen-1 adminlogin success controller-3 method : /admincontrol
+Admin Dashboard -screen-4 
+
+	profile
+		subscreen -3.1-- same as employee screen 
+
+	controller - 9 to process --inserts, view, update into canidates table,& view data, update , insert employeoffertable, & insert induction table, insert in employe table 
+	Candidates -- screen 4.1 --- fills the details of the candidates  
+
+	offer Letters
+		Option provided screen 4.2 ---view details from employeoffer table 
+		Option to issue screen 4.3 --- get candidates list where status NA & reg.dt from candidates table ---- clicking on employee send offer letter and update it to Ac and 
+						insert in employeoffer table with pending offer or rejected
+	Induction
+		screen 4.4 --- fills the induction program with employmentoffer id where status != rejected (with status pending, completed)
+				updates status of employmentoffer table to completed 
+				add employees in employee table who is having the status as completed in induction table 
+	Employee 
+		Option view	screen 4.5 view all the employee list from employee table where status = working
+		Option edit     screen 4.6 updates employee table
+					   id delete sets status as removed..else working 
+		
+	Master Data
+		option1 Holidays
+			subscreen-4.7 ---- jobgrade wise holidays from jobgradewiseholidays table & all holidays (holidays table)
+			controller-5, --- jobgradeholidayswise table , holidays table
+		option2 Leaves
+			subscreen -4.8-- total from jobgradewiseleaves 
+			controller-6 --  jobgradewiseleaves table
+
+	ALMS
+		controller-7 --  get data from employereq table wher approvedby=null,  & insert , view employeopted table
+		option1 Attendance
+			subscreen- 4.9 -- provide the employement id ---- gets respective attendance
+
+		option2 Leaves
+				Apply - subscreen- 4.10 --- gets the list of employees who applied leaves with approve and reject options where approvedby=null 
+								and to update the other attribute in employeereqtable
+								if accepted insert employeeopted table 
+
+		option3 Permissions -- sub screen 4.11 ---to view the list of employee who applied for permissions------------------pending ?
+
+		option4 Approvals -- subscreen 4.12 --- to view employeeopted table list where the empid = empid of empreqtable and approve by = hr_id;
+
+	Ref Documents  :  controller - 8 - to insert in induction documentation table and employee refernece document table
+		Option Induction Documents
+			offer letter
+			resume
+			study certificates
+		Option Employee Reference Documents
+			hike letter
+			medical reports
+		
+	Pay Roles
+		subscreen -3.9 --- ...?
+		
+				
+			
